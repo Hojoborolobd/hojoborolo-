@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hojoborolo - Homemade Cakes in Sylhet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #f8b4b4 0%, #f5d4d4 100%);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            color: #8b4a4a;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .bengali-name {
+            font-size: 1.5em;
+            color: #a85858;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #8b4a4a;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ffd4d4;
+        }
+        
+        /* Hero Section - IMPROVED */
+        .hero {
+            background: linear-gradient(135deg, rgba(139, 74, 74, 0.9) 0%, rgba(168, 88, 88, 0.85) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f5d4d4" width="1200" height="600"/><circle cx="200" cy="100" r="80" fill="%23ffb6c1" opacity="0.3"/><circle cx="900" cy="400" r="120" fill="%23ffc0cb" opacity="0.2"/><circle cx="600" cy="300" r="100" fill="%23fff0f5" opacity="0.4"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ffd4d4;
+        }
+        
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+        }
+        
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .hero-feature {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 25px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            font-size: 1.1em;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b9d;
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            background: #ff4d88;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.6);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #8b4a4a;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #ff6b9d;
+        }
+
+        /* Gallery Section - NEW */
+        .gallery {
+            background: linear-gradient(135deg, #fff9f9 0%, #ffe9e9 100%);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f5d4d4, #ffb6c1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-placeholder {
+            font-size: 4em;
+            color: white;
+            opacity: 0.6;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(139, 74, 74, 0.95), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Customer Reviews - NEW */
+        .reviews {
+            background: white;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .review-card {
+            background: linear-gradient(135deg, #fff9f9 0%, #ffe9e9 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stars {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .review-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b4a4a, #a85858);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .reviewer-info h4 {
+            color: #8b4a4a;
+            margin-bottom: 3px;
+        }
+        
+        .reviewer-info p {
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        /* About Section */
+        .about {
+            background: #fff9f9;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        /* Menu Section */
+        .menu {
+            background: white;
+        }
+        
+        .menu-category {
+            margin-bottom: 50px;
+        }
+        
+        .menu-category h3 {
+            font-size: 2em;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .menu-item {
+            background: #fff9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .item-name {
+            font-size: 1.3em;
+            color: #8b4a4a;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .item-price {
+            font-size: 1.2em;
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+        
+        .item-detail {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* Table for Tub Cakes */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .price-table th {
+            background: #8b4a4a;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .price-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .price-table tr:hover {
+            background: #fff9f9;
+        }
+        
+        /* Custom Orders */
+        .custom-orders {
+            background: linear-gradient(135deg, #fff9f9 0%, #ffe9e9 100%);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            color: #8b4a4a;
+            margin-bottom: 10px;
+        }
+
+        /* Payment Info Box - IMPORTANT */
+        .payment-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 50px;
+            border-left: 5px solid #ff6b9d;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .payment-info h3 {
+            color: #8b4a4a;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        .payment-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .payment-info li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1.1em;
+        }
+        
+        .payment-info li:before {
+            content: "✓ ";
+            color: #25D366;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Delivery Info */
+        .delivery {
+            background: white;
+        }
+        
+        .delivery-info {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .delivery-info h3 {
+            color: #8b4a4a;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .delivery-info ul {
+            margin-left: 20px;
+            line-height: 2;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: #8b4a4a;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact .section-title {
+            color: white;
+        }
+        
+        .contact .section-title:after {
+            background: white;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .contact-method {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            min-width: 250px;
+        }
+        
+        .contact-method h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .contact-method a {
+            color: #ffd4d4;
+            text-decoration: none;
+            font-size: 1.1em;
+            word-break: break-all;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background: #5a3030;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .logo {
+                font-size: 2em;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Hojoborolo</div>
+        <div class="bengali-name">হযবরল</div>
+        <p class="tagline">Abida Akther Chowdhury - Homemade Cakes with Love</p>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#custom">Custom Orders</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#delivery">Delivery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section - IMPROVED -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>🎂 Welcome to Hojoborolo 🎂</h1>
+            <p class="hero-subtitle">হযবরল - সিলেটের সেরা হোমমেইড কেক</p>
+            <p>Fresh Homemade Cakes, Tub Cakes & Chocolates<br>Delivered with Love Across Sylhet!</p>
+            
+            <div class="hero-features">
+                <div class="hero-feature">✨ 100% Homemade</div>
+                <div class="hero-feature">🎨 Custom Designs</div>
+                <div class="hero-feature">🚚 Home Delivery</div>
+                <div class="hero-feature">💯 Premium Quality</div>
+            </div>
+            
+            <a href="https://wa.me/8801781008223" class="cta-button">Order on WhatsApp</a>
+            <a href="#menu" class="cta-button">View Menu</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section - NEW -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Cake Gallery</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🎂</div>
+                    <div class="gallery-overlay">
+                        <h4>Birthday Cakes</h4>
+                        <p>Custom designed celebration cakes</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🧁</div>
+                    <div class="gallery-overlay">
+                        <h4>Tub Cakes</h4>
+                        <p>Layered perfection</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🍫</div>
+                    <div class="gallery-overlay">
+                        <h4>Artisan Chocolates</h4>
+                        <p>Handcrafted delights</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">💐</div>
+                    <div class="gallery-overlay">
+                        <h4>Wedding Cakes</h4>
+                        <p>Elegant designs</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🎉</div>
+                    <div class="gallery-overlay">
+                        <h4>Custom Themes</h4>
+                        <p>Your imagination, our creation</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🌈</div>
+                    <div class="gallery-overlay">
+                        <h4>Colorful Cakes</h4>
+                        <p>Vibrant & delicious</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <p>Welcome to <strong>Hojoborolo</strong> - your trusted homemade cake shop in Sylhet, Bangladesh! Founded by Abida Akther Chowdhury, we specialize in creating delicious, fresh cakes made with love and the finest ingredients.</p>
+                <p>Every cake is baked fresh to order, ensuring you get the best taste and quality. From classic pound cakes to custom designed celebration cakes, we bring sweetness to your special moments!</p>
+                <p><strong>Why Choose Us?</strong></p>
+                <p>✓ 100% Homemade & Fresh<br>
+                ✓ Quality Ingredients<br>
+                ✓ Custom Designs Available<br>
+                ✓ Home Delivery in Sylhet<br>
+                ✓ Affordable Prices</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <!-- Cakes -->
+            <div class="menu-category">
+                <h3>🎂 CAKES</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Chocolate Flavour</div>
+                        <div class="item-price">750 TK</div>
+                        <div class="item-detail">Per pound</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Vanilla Flavour</div>
+                        <div class="item-price">700 TK</div>
+                        <div class="item-detail">Per pound</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Lemon Flavour</div>
+                        <div class="item-price">700 TK</div>
+                        <div class="item-detail">Per pound</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Orange Flavour</div>
+                        <div class="item-price">700 TK</div>
+                        <div class="item-detail">Per pound</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Mango Flavour</div>
+                        <div class="item-price">700 TK</div>
+                        <div class="item-detail">Per pound</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tub Cakes -->
+            <div class="menu-category">
+                <h3>🥄 TUB CAKES</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Flavour</th>
+                            <th>250ml</th>
+                            <th>500ml</th>
+                            <th>1000ml</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dream Cake</strong></td>
+                            <td>200 TK</td>
+                            <td>380 TK</td>
+                            <td>750 TK</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Biscuit Tub Cake</strong></td>
+                            <td>160 TK</td>
+                            <td>320 TK</td>
+                            <td>620 TK</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chocolate Tub Cake</strong></td>
+                            <td>150 TK</td>
+                            <td>300 TK</td>
+                            <td>580 TK</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vanilla Tub Cake</strong></td>
+                            <td>150 TK</td>
+                            <td>300 TK</td>
+                            <td>580 TK</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lemon Tub Cake</strong></td>
+                            <td>150 TK</td>
+                            <td>300 TK</td>
+                            <td>580 TK</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orange Tub Cake</strong></td>
+                            <td>150 TK</td>
+                            <td>300 TK</td>
+                            <td>580 TK</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Chocolates -->
+            <div class="menu-category">
+                <h3>🍫 CHOCOLATES</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-name">Caramel Nut Chocolate</div>
+                        <div class="item-price">150 TK</div>
+                        <div class="item-detail">10 pieces</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Coconut Chocolate</div>
+                        <div class="item-price">150 TK</div>
+                        <div class="item-detail">10 pieces</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Mixed Combo</div>
+                        <div class="item-price">150 TK</div>
+                        <div class="item-detail">10 pieces</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Custom Orders Section -->
+    <section id="custom" class="custom-orders">
+        <div class="container">
+            <h2 class="section-title">Custom Design Cakes</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">
+                Make your special occasions even more memorable with our custom designed cakes!
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🎂</div>
+                    <h3>Birthday Cakes</h3>
+                    <p>Custom themes, characters, and designs for all ages</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💍</div>
+                    <h3>Wedding Cakes</h3>
+                    <p>Elegant multi-tier cakes for your big day</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎉</div>
+                    <h3>Anniversary Cakes</h3>
+                    <p>Romantic and personalized celebration cakes</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Graduation Cakes</h3>
+                    <p>Celebrate achievements with custom designs</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👶</div>
+                    <h3>Baby Shower</h3>
+                    <p>Adorable cakes for welcoming new life</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎊</div>
+                    <h3>Any Occasion</h3>
+                    <p>Tell us your idea, we'll make it happen!</p>
+                </div>
+            </div>
+
+            <!-- PAYMENT INFO - IMPORTANT -->
+            <div class="payment-info">
+                <h3>💳 How to Order & Payment</h3>
+                <ul>
+                    <li><strong>Order 24 hours in advance</strong> for all custom cakes</li>
+                    <li><strong>50% advance payment required</strong> to confirm your order</li>
+                    <li><strong>Payment Methods:</strong> bKash / Nagad (for advance)</li>
+                    <li><strong>Remaining 50%:</strong> Cash on Delivery</li>
+                    <li><strong>Contact us on WhatsApp:</strong> +880 1781-008223</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://wa.me/8801781008223" class="cta-button">Discuss Your Custom Cake</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section - NEW -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Best chocolate cake in Sylhet! The taste is incredible and the design was exactly
